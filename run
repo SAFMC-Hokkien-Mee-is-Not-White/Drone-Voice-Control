@@ -1,9 +1,0 @@
-# run_drone.py
-from dronekit import connect
-from STT.whisper_stt import main  # your streaming STT + command system
-
-# Connect to your Pixhawk (over UDP/WiFi)
-vehicle = connect("udp:127.0.0.1:14550", wait_ready=True)
-
-# Start the real-time voice control loop
-main(vehicle)

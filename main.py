@@ -22,20 +22,21 @@ def main():
             if text:
                 print(f"[HEARD]: {text}")
 
-                command = parse_command(text)
+                # parse command + distance
+                command, distance = parse_command(text)
 
                 # prevent repeated spam
                 if command != "UNKNOWN":
                     current_time = time.time()
 
-                    if command != last_command or (current_time - last_time > 2):
-                        print(f"[COMMAND]: {command}")
-                        execute(vehicle, command)
+                    if (command, distance) != last_command or (current_time - last_time > 2):
+                        print(f"[COMMAND]: {command}, Distance: {distance}")
+                        execute(vehicle, command, distance)
 
-                        last_command = command
+                        last_command = (command, distance)
                         last_time = current_time
 
-            time.sleep(0.5)
+            time.sleep(0.1)  # faster polling
 
     except KeyboardInterrupt:
         print("[INFO] Shutting down...")
