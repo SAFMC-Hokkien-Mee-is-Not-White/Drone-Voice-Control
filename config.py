@@ -4,9 +4,10 @@ AUDIO_FILE = "command.wav"
 
 PX4_MODE_OFFBOARD = 6 << 16
 
-CONNECTION_STRING = "udp:127.0.0.1:14540" #wsl px4 sim (do not use 14550, QGC is using that)
-TAKEOFF_ALTITUDE = 2
+CONNECTION_STRING = "/dev/ttyUSB0" #wsl px4 sim (do not use 14550, QGC is using that)
+BAUD_RATE = 57600
 
+TAKEOFF_ALTITUDE = 1.0
 DRUM_SERVO_CHANNEL = 10
 ELECTROMAGNET_CHANNEL = 9
 

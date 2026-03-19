@@ -1,27 +1,30 @@
-import time
+import asyncio
+import logging
 from Drone.controller import connect_vehicle
 from NLP.commands import execute
-import logging
-logging.getLogger("dronekit").setLevel(logging.CRITICAL)
 
-def keyboard_loop():
+logging.getLogger("mavsdk").setLevel(logging.CRITICAL)
+
+async def keyboard_loop():
     """
     Simple command loop to control the drone via keyboard input.
     Type commands like: ARM, FORWARD 2, UP 1, YAW_LEFT 90 etc.
     Type QUIT to exit.
     """
-
-    mav = connect_vehicle("udp:127.0.0.1:14540")
-    print("[INFO] Connected to vehicle")
+    drone = await connect_vehicle("serial:///dev/ttyUSB0:57600")
     print("Enter commands (type QUIT to exit)")
 
     try:
         while True:
-            user_input = input(">>> ").strip()
+            # asyncio-safe input (runs blocking input() in a thread)
+            user_input = await asyncio.get_event_loop().run_in_executor(
+                None, input, ">>> "
+            )
+            user_input = user_input.strip()
+
             if not user_input:
                 continue
 
-            # Quit
             if user_input.upper() == "QUIT":
                 print("[INFO] Exiting keyboard control")
                 break
@@ -37,14 +40,14 @@ def keyboard_loop():
                     print("[WARN] Invalid distance, ignoring")
 
             print(f"[INPUT] Command: {cmd}, Distance: {distance}")
-            execute(mav, cmd, distance)
+            await execute(drone, cmd, distance)
 
     except KeyboardInterrupt:
         print("\n[INFO] Keyboard loop interrupted")
 
     finally:
-        mav.close()
+        # No explicit close() in MAVSDK — just signal disconnect
         print("[INFO] Vehicle disconnected")
 
 if __name__ == "__main__":
-    keyboard_loop()
+    asyncio.run(keyboard_loop())
