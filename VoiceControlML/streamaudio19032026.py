@@ -198,7 +198,7 @@ def audio_callback_in(indata, frames, time_info, status):
             # Add your reverse command here
             
         elif last_command == "Right":
-            # --- Spin toggle affects Right command (RESTORED) ---
+            # --- Spin toggle affects Right command ---
             if spin_toggle:
                 display_command = "YAW RIGHT"
                 # Add your yaw right command here
