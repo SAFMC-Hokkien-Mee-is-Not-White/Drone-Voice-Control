@@ -280,4 +280,4 @@ with sd.InputStream(channels=1, samplerate=SAMPLE_RATE, blocksize=STEP_SIZE, cal
 #Spin                                       :       Switches between Yaw mode, and Roll mode. (e.g. Yaw left, Roll left)
 #Cycle, Drop                                :       Spins the drum, and drops the payload respectively
 #Stop                                       :       Stops all movement
-#Base, Arm                                  :       Bases Drone, arms/arms drone
+#Base, Arm                                  :       Lands Drone, arms/disarms drone
