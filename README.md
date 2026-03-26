@@ -49,20 +49,11 @@ Supposed to parse output from stt into commands.
 
 (Note: this version of the program has not been tested on the Pi 5 yet.)
 
-```streamaudio20032026.py``` listens to the mic and uses a trained model to classify incoming speech as commands.
-To test, download ```soundclassifier_with_metadata.tflite``` and ```streamaudio20032026.py```, and store them in the same folder.
-Run ```streamaudio20032026.py```.
+```streamaudio23032026.py``` listens to the mic and uses a trained model to classify incoming speech as commands.
+To test, 
+  1) Download ```soundclassifier_with_metadata.tflite``` and ```streamaudio23032026.py```, and store them in the same folder.
+  2) Run ```streamaudio23032026.py```.
 
 This model is trained on my (Hao En's) voice, and in a quiet area. This may result in poor accuracy when used by someone else. Additional training from the pilot is required.
 
-Spoken Commands (doesnt do anything yet):
-1. Forwards, Reverse, Up, Down, Left, Right   :       Movement of drone
-2. Spin                                       :       Switches between Yaw mode, and Roll mode. (e.g. Yaw left, Roll left)
-3. Cycle, Drop                                :       Spins the drum, and drops the payload respectively
-4. Stop                                       :       Stops all movement
-5. Base                                       :       Make the drone land
-6. Arm                                        :       Arms/Disarms the drone
-
-This is nearing the limit of spoken commands, as most commands sound too similar to each other (e.g. "Land" and "Left").
-
-To actually make it do something, theres a bunch of if statements below ```line 214``` to put in your commands. Do note that as of now, they will trigger several times a second.
+To actually make it do something, there's a bunch of if statements below ```line 137``` to put in your commands. Do note that, as of now, they will trigger several times a second.
