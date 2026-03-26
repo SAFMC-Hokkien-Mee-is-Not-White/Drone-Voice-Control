@@ -56,4 +56,4 @@ To test,
 
 This model is trained on my (Hao En's) voice, and in a quiet area. This may result in poor accuracy when used by someone else. Additional training from the pilot is required.
 
-To actually make it do something, there's a bunch of if statements below ```line 137``` to put in your commands. Do note that, as of now, they will trigger several times a second.
+To actually make it do something, there's a bunch of if statements below ```line 165``` to put in your commands. Do note that, as of now, they will trigger several times a second.
