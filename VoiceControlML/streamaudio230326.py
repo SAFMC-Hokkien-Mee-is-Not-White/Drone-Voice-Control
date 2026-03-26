@@ -138,14 +138,14 @@ def audio_callback_in(indata, frames, time_info, status):
         if last_command == "Background Noise" or last_command == "None":
             display_command = "Idle"
 
-        # --- Direction logic ---
+        # --- Servo Commands ---
         elif last_command == "Left":
             display_command = "Left"
 
         elif last_command == "Right":
             display_command = "Right"
 
-        # --- Pass-through commands ---
+        # --- Commands (for realys) ---
         elif last_command == "Blue":
             display_command = "Blue"
 
@@ -208,10 +208,3 @@ with sd.InputStream(channels=1, samplerate=SAMPLE_RATE, blocksize=STEP_SIZE, cal
             sd.sleep(1000)
     except KeyboardInterrupt:
         print("\nStopped")
-
-
-#Forwards, Reverse, Up, Down, Left, Right   :       Movement of drone
-#Spin                                       :       Switches between Yaw mode, and Roll mode. (e.g. Yaw left, Roll left)
-#Cycle, Drop                                :       Spins the drum, and drops the payload respectively
-#Stop                                       :       Stops all movement
-#Base, Arm                                  :       Lands Drone, arms/disarms drone
